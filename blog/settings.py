@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["web-production-80bc.up.railway.app"]
 
@@ -146,8 +146,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# try:
-#     from .local_settings import *
-# except ModuleNotFoundError:
-#     pass
+try:
+    from .local_settings import *
+except ModuleNotFoundError:
+    pass
 
