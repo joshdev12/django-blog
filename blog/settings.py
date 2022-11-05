@@ -26,7 +26,7 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["http://silvakidd.up.railway.app/"]
+ALLOWED_HOSTS = ["silvakidd.up.railway.app"]
 
 
 # Application definition
@@ -147,8 +147,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-try:
-    from .local_settings import *
-except ModuleNotFoundError:
-    pass
+# try:
+#     from .local_settings import *
+# except ModuleNotFoundError:
+#     pass
 
