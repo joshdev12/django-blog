@@ -26,7 +26,7 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["silvakidd.up.railway.app"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
