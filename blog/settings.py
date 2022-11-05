@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'post',
+    'blogpost',
     
     #3rd parties
     'ckeditor',

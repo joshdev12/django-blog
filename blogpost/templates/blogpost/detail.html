@@ -1,0 +1,48 @@
+{% extends 'post/base.html' %}
+
+{% block content %}
+
+<h2> {{ post.title }} </h2>
+<div>
+    <img src="{{ post.image_url }}" alt="">
+</div>
+
+<p> {{ post.body }} </p>
+
+
+<hr>
+
+<h3> Comments </h3>
+<form method="post">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <div>
+        <div>
+            <button> Submit comment </button>
+        </div>
+    </div>
+
+</form>
+
+{% for comment in post.comments.all %}
+<div>
+    <div>
+        <b> {{ comment.name }} </b> <small> {{ comment.created_at | timesince }} </small>
+        <p> {{comment.body}} </p>
+    </div>
+</div>
+
+{% endfor %}
+
+ 
+
+
+{% endblock content %}
+
+
+
+
+

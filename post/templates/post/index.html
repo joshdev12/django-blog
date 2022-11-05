@@ -4,10 +4,10 @@
 
 {% block content %}
 
-<div class="nav-container">
+{% comment %} <div class="nav-container">
     <div class="nav_bar">
         <div class="logo">
-            <div> Cruella</div>
+            <img src="{%static 'post/image/cr.png'%}" alt="">
 
         </div>
         <nav id="slideBar" class="slidebar">
@@ -20,7 +20,7 @@
 
     </div>
     
-</div>
+</div> {% endcomment %}
 
 
 <div class="jumbotron bg-secondary p-5 container">
@@ -35,28 +35,30 @@
   <div  class="carousel-indicators">
       <button type="button" data-bs-target="#intro" data-bs-slide-to="0" class="active"></button>
       <button type="button" data-bs-target="#intro" data-bs-slide-to="1" ></button>
+      <button type="button" data-bs-target="#intro" data-bs-slide-to="2" ></button>
+      <button type="button" data-bs-target="#intro" data-bs-slide-to="3" ></button>
 
   </div>
   
   <div class="carousel-inner">
-    {% for post in posts %}
-      <div class="carousel-item active"> 
-         
-        <div>     
-          <img src="{{ post.image_url }}" alt="image" class="d-block" style="width: 100%;">
-          <div class="carousel-caption">
-              <h2 class="display-4">{{post.title}} </h2>
-              <p class="h3"> {{ post.body | truncatewords:30 }} </p>
-              
-          </div>
-        </div>
-        
-      </div>
-      {% endfor %}
-          
+   {% for c in caro %}
+    <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %}">             
+      <img src="{{ c.image_url }} " alt="image" class="d-block" style="width: 100%;">
+      <div class="carousel-caption d-none d-md-block">
+          <h2 class="animate_animated animate_fadeInDown  display-4">{{ c.title }} </h2>
+          <p class="animate_animated animate_zoomIn  h3"> {{ c.body | truncatewords:25 }} </p>            
+      </div>              
+    </div>
+    {% endfor %}
   </div>
   
-  
+  <button class="carousel-control-prev" type="button" data-bs-target="#intro" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#intro" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button> 
+
 </div>
 
 
@@ -66,16 +68,21 @@
     {% for post in posts %}
 
     <div class="blog-container">
+
       <div class="blog-img">
-        <div class="inner-blog-img">
-          <img src="{{ post.image_url }}" alt="Forest" width="450" height="400">
-        </div>
-        <h4> {{post.title}} </h4>
-          
-        <div class="desc">{{ post.body | truncatewords:30 }}</div>
-        <div class="readmore-container">
-          <a href="" class="readmore"> Read more ...!!!</a>
-        </div>
+        <a href=" {% url 'post_detail' post.pk %} " class="readmore">
+          <div class="inner-blog-img">
+            <img src="{{ post.image_url }}" alt="Forest" width="450" height="400">
+          </div>
+          <h4> {{post.title}} </h4>
+            
+          <div class="desc">{{ post.body | truncatewords:30 }}</div>
+          <div class="time">
+            <p>Read more ...!!!</p>  
+            <p>{{ post.created |timesince }} </p>
+          </div>
+          <!-- time:"h:iA" -->
+        </a>
       </div>      
     </div>
     
@@ -91,20 +98,13 @@
     <div class="section-two-content">
 
       <div class="first-content">
-        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, mollitia.</h4>
+        <h4>{{ rand_post.title }}</h4>
         <div class="first-content-img">
-          <img src="{% static 'post/image/dar.jpg' %}" alt="" width="500" height="400">
+          <img src="{{ rand_post.image_url }}" alt="" width="500" height="400">
         </div>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum, minima beatae. Deleniti rem odit, recusandae labore perspiciatis nesciunt ab quos vitae corporis, consequuntur voluptas illo inventore repellat a? Harum, alias?
-        Vitae obcaecati, consequatur earum magni quia officiis eveniet modi voluptatibus ratione amet iste praesentium ullam repellendus veniam est. Repudiandae voluptas laborum ea sed unde provident earum, aperiam nostrum illum dolorum?
-        Eos vero rerum eaque porro! Eos laudantium maxime quo id incidunt quod officia modi repudiandae nulla a blanditiis illo perspiciatis dolorum cumque consequatur expedita quasi, distinctio odit delectus! Enim, nobis?
-        Odit dignissimos ipsa molestiae distinctio sit aut, non quisquam aspernatur doloribus architecto, nobis quaerat natus adipisci doloremque a labore exercitationem! Reprehenderit, explicabo! Praesentium perspiciatis et facilis corporis nobis, similique in.
-        Est corporis, sit amet numquam, quidem accusamus optio eum perferendis dolores repellat, quisquam alias non voluptatibus aliquid maxime ut commodi sapiente consectetur sequi id aperiam. Quos vitae deserunt exercitationem adipisci?
-        Veritatis quibusdam, similique officiis, omnis impedit at enim incidunt illo iusto doloribus sint laboriosam rem corporis consequatur. Eum eos nemo ab. Iure praesentium est cumque expedita non aperiam facere ut?
-        Nobis harum assumenda ullam dolor accusamus odit, repellat atque a nostrum sunt nemo ducimus ex iure eligendi suscipit eos mollitia quas animi culpa dolorum libero earum? Cumque aliquam itaque excepturi.
-        Rem consectetur fugiat eveniet neque dolor in quis quod ullam a eum incidunt accusamus tempore perferendis at vel quo, labore impedit temporibus nesciunt facere explicabo nihil. Ipsa aut rem dolore!
-        Nobis itaque molestiae ad animi, alias ipsum quo pariatur nihil fuga est neque optio deleniti natus sapiente sequi id, temporibus ab, perspiciatis veritatis libero voluptatibus. Sint ab perferendis ipsum aliquam!
-        Commodi cupiditate quas nobis. Eveniet ducimus, magni laboriosam adipisci consectetur laudantium facere dolores repellat nobis hic, distinctio esse corrupti magnam animi eos at quod iusto vero vitae soluta quas. Delectus.</p>
+        <p>
+          {{ rand_post.body }}
+      </p>
       </div>
 
       <div class="second-content">
@@ -119,15 +119,43 @@
           <div class="inner-related-post">
             <h4>Related Post</h4>
             <div class="related-post-content">              
-               <div class="related-post-img">
-                <img src="{% static 'post/image/dar.jpg' %}" alt="">
-               </div>
-               <div class="related-post-text">
-                  <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic soluta esse molestiae, rem quas ut architecto pariatur consequuntur consectetur                
-                  </p>
+              <div class="related-post-img">
+                <img src="{{rand_postone.image_url }}" alt="">
               </div>
+              <div class="related-post-text">
+                <h6>{{ rand_postone.title }}</h6>
+                <div>
+                  {{ rand_postone.body | truncatewords:30 }}
+                </div>
+                <hr>
             </div>
+            </div>
+
+            <div class="related-post-content">              
+              <div class="related-post-img">
+                 <img src="{{ rand_posttwo.image_url }}" alt="">
+              </div>
+              <div class="related-post-text">
+                 <h6>{{ rand_posttwo.title }}</h6>
+                 <div>
+                  {{ rand_posttwo.body | truncatewords:30 }}
+                </div>
+                <hr>
+             </div>
+           </div>
+
+           <div class="related-post-content">              
+            <div class="related-post-img">
+               <img src="{{ rand_postthree.image_url }}" alt="">
+            </div>
+            <div class="related-post-text">
+               <h6>{{ rand_postthree.title }}</h6>
+               <div>
+                {{ rand_postthree.body | truncatewords:30 }}
+              </div>
+              <hr>
+           </div>
+         </div>
 
           </div>
 
@@ -140,44 +168,6 @@
 </div>
 
 
-<div class="footer">
-  <div class="footer-conatiner">
-    <div class="footer-content">
-      <div class="footer-logo">
-       Cruella Blog
-      </div >
-      <div class="footer-second-cont">
-        <div class="footer-link">
-          <div>Quick Link</div>
-          <a href="">Home</a>
-          <a href="">Blog</a>
-          <a href="">Contact</a>
-  
-        </div>
-  
-        <div class="footer-conditions">
-          <div>Support</div>
-            <a href=""> Terms & Condition</a>
-            <a href=""> Private Policy </a>
-  
-        </div>
-
-      </div>      
-
-    </div>
-  </div>
-
-</div>
-
-<div class="footer-info">
-  <div class="inner-footer-info">
-    <div class="footer-info-content">
-      <div class="footer-info-logo">
-        Cruella Blog
-       </div>
-    </div>
-  </div>
-</div>
 <script src="{% static 'post/js/bootstrap.bundle.min.js' %}"></script>
 
 

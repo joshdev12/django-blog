@@ -1,0 +1,29 @@
+{% extends 'post/base.html' %}
+
+
+{% block content %}
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <p>
+        {{ form.title.label}}
+        {{ form.title}}
+    </p>
+    
+
+    {{ form.body.label}}
+    {{ form.body}}
+
+    {{ form.image.label}}
+    {{ form.image}}
+
+    <input type="submit">
+
+
+</form>
+
+{% endblock content %}
+
+
