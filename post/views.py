@@ -15,10 +15,7 @@ def index(request, *args, **kwargs):
     rand_postthree = rd.choice(posts)
     caro = posts.order_by("-created")[:4]
     context = {"posts": posts, "caro": caro, "rand_post": rand_post, "rand_postone":rand_postone, "rand_posttwo":rand_posttwo, "rand_postthree":rand_postthree  }
-    # profile = None 
-    
-    # context["profile"] = profile
-
+  
     return render(request, 'post/index.html', context)
 
 
